@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ICharacterService {
 	public Character getById(int id);
-	public List<Character> findAll();
+	public List<Character> findAllCharacters();
 	public void createCharacter(Character character);
 	public void updateCharacter(int id, Character character);
 	public void deleteCharacter(int id);

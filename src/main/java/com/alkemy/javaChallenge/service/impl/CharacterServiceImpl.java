@@ -3,6 +3,7 @@ package com.alkemy.javaChallenge.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.alkemy.javaChallenge.model.Character;
@@ -15,7 +16,8 @@ public class CharacterServiceImpl implements ICharacterService{
 	@Autowired
 	private CharacterRepository repository;
 	@Override
-	public List<Character> findAll() {
+	@Query()
+	public List<Character> findAllCharacters() {
 		return (List<Character>) repository.findAll();
 	}
 	@Override
