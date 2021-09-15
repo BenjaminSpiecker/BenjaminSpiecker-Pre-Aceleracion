@@ -28,11 +28,10 @@ public class Genre {
 			  inverseJoinColumns = @JoinColumn(name = "movies_series_id"))
 	private List<MovieSerie> genreMoviesSeries;
 	
-	public Genre(String name, String image, List<MovieSerie> genreMoviesSeries) {
+	public Genre(String name, String image) {
 		super();
 		this.name = name;
 		this.image = image;
-		this.genreMoviesSeries = genreMoviesSeries;
 	}
 
 	public Genre() {
@@ -69,13 +68,5 @@ public class Genre {
 	public void setGenreMoviesSeries(List<MovieSerie> genreMoviesSeries) {
 		this.genreMoviesSeries = genreMoviesSeries;
 	}
-
-	@Override
-	public String toString() {
-		return "Genre [id=" + id + ", name=" + name + ", image=" + image + ", genreMoviesSeries=" + genreMoviesSeries
-				+ "]";
-	}
-	
-	 
 
 }

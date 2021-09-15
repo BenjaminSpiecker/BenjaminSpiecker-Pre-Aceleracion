@@ -23,13 +23,13 @@ public class Character {
   private Integer age;
   @Column()
   private Integer weight;
-  @Column()
+  @Column(length=512)
   private String image;
-  @Column()
+  @Column(length=512)
   private String history;
   @ManyToMany
   @JoinTable(
-		  name = "associated_movies_series",
+		  name = "characters_movies_series",
 		  joinColumns = @JoinColumn(name = "character_id"),
 		  inverseJoinColumns = @JoinColumn(name = "movies_series_id"))
   private List<MovieSerie> characterMoviesSeries;
@@ -40,14 +40,13 @@ public class Character {
   
   
   
-  public Character(String name, Integer age, Integer weight, String image, String history, List<MovieSerie> characterMoviesSeries) {
+  public Character(String name, Integer age, Integer weight, String image, String history) {
 	super();
 	this.name = name;
 	this.age = age;
 	this.weight = weight;
 	this.image = image;
 	this.history = history;
-	this.characterMoviesSeries = characterMoviesSeries;
 }
 
 
@@ -101,13 +100,5 @@ public Integer getId() {
   public void setMoviesSeries(List<MovieSerie> characterMoviesSeries) {
 	this.characterMoviesSeries = characterMoviesSeries;
   }
-
-@Override
-public String toString() {
-	return "Character [id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", image=" + image
-			+ ", history=" + history + ", associatedMoviesSeries=" + characterMoviesSeries + "]";
-}
-  
-  
   
 }

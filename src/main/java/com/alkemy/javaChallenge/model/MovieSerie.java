@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,12 +17,14 @@ public class MovieSerie {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	@Column(length=521)
+	private String image;
 	@Column()
 	private String title;
 	@Column(name = "creation_date")
-	private LocalDateTime creationDate;
+	private Date creationDate;
 	@Column()
-	private Integer qualification;
+	private float qualification;
 	@ManyToMany(mappedBy = "characterMoviesSeries")
 	private List<Character> characters;
 	@ManyToMany(mappedBy = "genreMoviesSeries")
@@ -32,12 +34,12 @@ public class MovieSerie {
 		
 	}
 	
-	public MovieSerie(Integer id, String title, LocalDateTime creationDate, Integer qualification, List<Character> characters) {
+	public MovieSerie(String image, String title, Date creationDate, float qualification) {
 		super();
+		this.image = image;
 		this.title = title;
 		this.creationDate = creationDate;
 		this.qualification = qualification;
-		this.characters = characters;
 	}
 	
 	public Integer getId() {
@@ -46,24 +48,42 @@ public class MovieSerie {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public LocalDateTime getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(LocalDateTime creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Integer getQualification() {
+	public float getQualification() {
 		return qualification;
 	}
-	public void setQualification(Integer qualification) {
+	public void setQualification(float qualification) {
 		this.qualification = qualification;
 	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
 
 	public List<Character> getCharacters() {
 		return characters;
@@ -73,10 +93,4 @@ public class MovieSerie {
 		this.characters = characters;
 	}
 
-	@Override
-	public String toString() {
-		return "MovieSerie [id=" + id + ", title=" + title + ", creationDate=" + creationDate + ", qualification="
-				+ qualification + ", characters=" + characters + "]";
-	}	
-	
 }
